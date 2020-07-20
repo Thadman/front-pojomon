@@ -11,6 +11,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
+    "deploy": "yarn build && netlify deploy --prod --dir=build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

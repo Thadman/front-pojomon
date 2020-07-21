@@ -1,11 +1,24 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-class Navbar extends React.Component {
-  render() {
-    return (
-      <h1>This is the Navbar page</h1>
-    )
-  }
-}
+const NavBar = () => {
+  const history = useHistory();
 
-export default Navbar
+  return (
+    <nav>
+      <Link to="/help">Help</Link>
+
+      <span
+        onClick={() => {
+          localStorage.removeItem("token");
+          history.push("/login");
+        }}
+      >
+        Logout
+      </span>
+    </nav>
+  );
+};
+
+export default NavBar;

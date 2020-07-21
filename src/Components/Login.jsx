@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: ""}
@@ -31,7 +32,7 @@ class Login extends React.Component {
       } else {
         const { jwt } = await response.json()
         localStorage.setItem("token", jwt)
-        this.props.history.push("/monster/") // NEED CORRECT ROUTE ***************************************
+        this.props.history.push("/") // NEED CORRECT ROUTE ***************************************
       }
     } catch (err) {
       this.setState({
@@ -63,8 +64,9 @@ render() {
             value={password}
             onChange={this.onInputChange}
           />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Login" />
         </form>
+        <p>Click <Link to="/sign-up">HERE</Link> to SignUp</p>
       </div>
     );
   }

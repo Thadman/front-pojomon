@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom"
 
 class SignUp extends React.Component {
   state = { username: "", email: "", password: "", errMessage: ""}
@@ -45,7 +46,7 @@ render() {
     const { username, email, password, errMessage } = this.state;
     return (
       <div className="form-container">
-        <h1>Login</h1>
+        <h1>SignUp</h1>
         {errMessage && <span>{errMessage}</span>}
         <form onSubmit={this.onFormSubmit}>
             <label htmlFor="username">Username</label>
@@ -72,8 +73,9 @@ render() {
               value={password}
               onChange={this.onInputChange}
             />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="SignUp" />
         </form>
+        <p>Click <Link to="/login">HERE</Link> to Login</p>
       </div>
     );
   }

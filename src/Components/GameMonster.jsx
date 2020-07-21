@@ -2,37 +2,37 @@ import React from "react"
 
 class GameMonster extends React.Component {
   async componentDidMount() {
+    // const token = localStorage.getItem('token')
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/monsters/current`,
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `${localStorage.getItem('token')}`,
         },
       }
     );
       
-    console.log(response)
     const monster = await response.json();
-    console.log(monster);
     this.setState({ monster: monster });
   }
+  
   render() {
     const monster = this.state?.monster
     console.log(monster)
     return (
       <>
-        {monster && <h1>{monster.username}</h1>}
-        {monster && <h1>{monster.id}</h1>}
-        {monster && <h1>{monster.name}</h1>}
-        {monster && <h1>{monster.age}</h1>}
-        {monster && <h1>{monster.weight}</h1>}
-        {monster && <h1>{monster.hunger}</h1>}
-        {monster && <h1>{monster.strength}</h1>}
-        {monster && <h1>{monster.poop}</h1>}
-        {monster && <h1>{monster.sick}</h1>}
-        {monster && <h1>{monster.death}</h1>}
-        {monster && <h1>{monster.level}</h1>}
+        {monster && <h1>{monster.current_user.username}</h1>}
+        {monster && <h1>{monster.monster.id}</h1>}
+        {monster && <h1>{monster.monster.name}</h1>}
+        {monster && <h1>{monster.monster.age}</h1>}
+        {monster && <h1>{monster.monster.weight}</h1>}
+        {monster && <h1>{monster.monster.hunger}</h1>}
+        {monster && <h1>{monster.monster.strength}</h1>}
+        {monster && <h1>{monster.monster.poop}</h1>}
+        {monster && <h1>{monster.monster.sick}</h1>}
+        {monster && <h1>{monster.monster.death}</h1>}
+        {monster && <h1>{monster.monster.level}</h1>}
       </>
     )
   }

@@ -1,22 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
+import NavbarLogic from "./NavbarLogic"
 
 const NavBar = () => {
-  const history = useHistory();
+  // const history = useHistory();
 
   return (
     <nav>
+      <Link to="/game">X</Link>
       <Link to="/help">Help</Link>
 
-      <span
-        onClick={() => {
-          localStorage.removeItem("token");
-          history.push("/login");
-        }}
-      >
-        Logout
-      </span>
+      <NavbarLogic />
     </nav>
   );
 };

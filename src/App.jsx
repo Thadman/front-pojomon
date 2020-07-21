@@ -4,6 +4,7 @@ import NavBar from "./Components/Navbar"
 import Login from "./Components/Login"
 import SignUp from "./Components/SignUp"
 import GameMonster from "./Components/GameMonster"
+import Help from "./Components/Help"
 import NoMatch from "./Components/NoMatch"
 
 class App extends React.Component {
@@ -12,11 +13,12 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <div>
-            <Switch>
               <NavBar />
+            <Switch>
               <Route exact path="/login" component={Login} />
               <Route exact path="/sign-up" component={SignUp} />
-              <Route exact path="/" component={GameMonster} />
+              <Route exact path="/game" component={GameMonster} />
+              <Route exact path="/help" component={Help} />
               <Route component={NoMatch} />
            </Switch>
           </div>

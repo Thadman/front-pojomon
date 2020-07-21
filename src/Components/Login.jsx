@@ -32,7 +32,7 @@ class Login extends React.Component {
       } else {
         const { jwt } = await response.json()
         localStorage.setItem("token", jwt)
-        this.props.history.push("/") // NEED CORRECT ROUTE ***************************************
+        this.props.history.push("/game") // NEED CORRECT ROUTE ***************************************
       }
     } catch (err) {
       this.setState({

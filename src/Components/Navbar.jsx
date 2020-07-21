@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
+import NavbarLogic from "./NavbarLogic"
 
-class Navbar extends React.Component {
-  render() {
-    return (
-      <h1>This is the Navbar page</h1>
-    )
-  }
-}
+const NavBar = () => {
+  // const history = useHistory();
 
-export default Navbar
+  return (
+    <nav>
+      <Link to="/game">X</Link>
+      <Link to="/help">Help</Link>
+
+      <NavbarLogic />
+    </nav>
+  );
+};
+
+export default NavBar;

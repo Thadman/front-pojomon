@@ -6,19 +6,53 @@ class FeedFood extends React.Component {
     super(props);
     this.state = props.monster;
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.userID !== prevProps.userID) {
+  //     this.fetchData(this.props.userID);
+  //   }
+  // } 
+  
+  handleClick = (event) => {
+    event.preventDefault()
+    hunger += 1
+    // console.log('this FUCKIN');
+  }
+  
   render() {
     console.log(this.state);
+    const hunger = this.state.monster.monster.hunger
+    console.log(hunger)
     return (
       <>
         <h1>{this.state.monster.monster.hunger}</h1>
+        <div className="feed-container">
+          <form onSubmit={this.onFormSubmit}>
+
+          <button onClick={this.handleClick}>
+            FEED
+          </button>
+
+            {/* <span
+              // type="hunger"
+              name="hunger"
+              id="hunger"
+              value={hunger}
+              onChange={this.onInputChange}
+            />
+
+            <input type="submit" value="FEED" /> */}
+          </form>
+        </div>
       </>
     );
   }
+}
   // state = { hunger: "" };
 
   // onFormSubmit = async (event) => {
   //   event.preventDefault();
-  //   const {} = this.state;
+  //   // DECONSTRUCT MONSTER IF REQUIRED
   //   try {
   //     const response = await fetch(
   //       `${process.env.REACT_APP_BACKEND_URL}/monsters/current`,
@@ -27,7 +61,7 @@ class FeedFood extends React.Component {
   //         headers: {
   //           "Content-Type": "application/json",
   //         },
-  //         body: JSON.stringify({ user: { username, email, password } }),
+  //         body: JSON.stringify({ monster: { hunger } }),
   //       }
   //     );
   //     if (response.status >= 400) {
@@ -52,45 +86,6 @@ class FeedFood extends React.Component {
   //   }
   // };
 
-  // render() {
-  //   const { username, email, password, errMessage } = this.state;
-  //   return (
-  //     <div className="form-container">
-  //       <h1>SignUp</h1>
-  //       {errMessage && <span>{errMessage}</span>}
-  //       <form onSubmit={this.onFormSubmit}>
-  //         <label htmlFor="username">Username</label>
-  //         <input
-  //           type="username"
-  //           name="username"
-  //           id="username"
-  //           value={username}
-  //           onChange={this.onInputChange}
-  //         />
-  //         <label htmlFor="email">Email</label>
-  //         <input
-  //           type="email"
-  //           name="email"
-  //           id="email"
-  //           value={email}
-  //           onChange={this.onInputChange}
-  //         />
-  //         <label htmlFor="password">Password</label>
-  //         <input
-  //           type="password"
-  //           name="password"
-  //           id="password"
-  //           value={password}
-  //           onChange={this.onInputChange}
-  //         />
-  //         <input type="submit" value="SignUp" />
-  //       </form>
-  //       <p>
-  //         Click <Link to="/login">HERE</Link> to Login
-  //       </p>
-  //     </div>
-  //   );
-  // }
-}
+  // const { monster , errMessage } = this.state;
 
 export default FeedFood;

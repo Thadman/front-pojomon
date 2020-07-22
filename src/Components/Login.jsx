@@ -1,47 +1,50 @@
-import React from 'react'
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
-  state = { email: "", password: "", errMessage: ""}
+  state = { email: "", password: "", errMessage: "" };
 
   onInputChange = (event) => {
-    const key = event.target.id
+    const key = event.target.id;
     this.setState({
       [key]: event.target.value,
-    })
-      console.log(this.state)
-  }
+    });
+    console.log(this.state);
+  };
 
   onFormSubmit = async (event) => {
     event.preventDefault();
-    const { email, password } = this.state
+    const { email, password } = this.state;
     const body = {
-      auth: { email, password }, 
+      auth: { email, password },
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(body)
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
       if (response.status >= 400) {
-        throw new Error("incorrect credentials")
+        throw new Error("incorrect credentials");
       } else {
-        const { jwt } = await response.json()
-        localStorage.setItem("token", jwt)
-        this.props.history.push("/game") // NEED CORRECT ROUTE ***************************************
+        const { jwt } = await response.json();
+        localStorage.setItem("token", jwt);
+        this.props.history.push("/game"); // NEED CORRECT ROUTE ***************************************
       }
     } catch (err) {
       this.setState({
         errMessage: err.message,
-      })
+      });
     }
-  }
-  
-render() {
+  };
+
+  render() {
     const { email, password, errMessage } = this.state;
     return (
       <div className="form-container">
@@ -66,10 +69,12 @@ render() {
           />
           <input type="submit" value="Login" />
         </form>
-        <p>Click <Link to="/sign-up">HERE</Link> to SignUp</p>
+        <p>
+          Click <Link to="/sign-up">HERE</Link> to SignUp
+        </p>
       </div>
     );
   }
 }
 
-export default Login
+export default Login;

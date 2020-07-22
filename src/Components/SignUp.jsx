@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 class SignUp extends React.Component {
-  state = { username: "", email: "", password: "", errMessage: ""}
+  state = { username: "", email: "", password: "", errMessage: "" }
 
   onInputChange = (event) => {
     const key = event.target.id

@@ -32,7 +32,7 @@ const Help = () => {
       <h1>Poop</h1>
 
       <p>
-        Your monster eats and so it will poop! 💩💩💩💩
+        Your monster eats and so it will poop! 
         -	Approx. every 5-6 hours 
         Press the POOP icon to clean up poop.
         If you don’t clean up after you monster and it poops 4 times your monster will become SICK 

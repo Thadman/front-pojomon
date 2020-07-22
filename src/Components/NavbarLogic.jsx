@@ -1,30 +1,28 @@
-import React from 'react'
-import { useHistory, Link } from "react-router-dom";
+// import React from 'react'
+// import { useHistory, Link } from "react-router-dom";
 
-const history = useHistory();
+// const NavbarLogic = () => {  
 
-const choice = () => {
-  if (localStorage.getItem("token") === true) {
-    return <span onClick={(event) => {
-      localStorage.removeItem("token");
-      history.push("/login");
-    }}>Logout</span>
-  } else {
-    return <Link to="/Login">Login</Link>
-  }
-}
+// const history = useHistory();
 
+// // const choice = () => {
+// //   console.log("choice")
+// //   if (localStorage.getItem("token") === true) {
+// //     return <span onClick={(event) => {
+// //       localStorage.removeItem("token");
+// //       history.push("/login");
+// //     }}>Logout</span>
+// //   } else {
+// //     return <Link to="/Login">Login</Link>
+// //   }
+// // }
+//     return(
 
-class NavbarLogic extends React.Component {  
-  render() {
-
-    return(
-      choice() 
-    )
-  }
-}
+//       // choice() 
+//     )
+//   }
 
 
 
-export default NavbarLogic
 
+// export default NavbarLogic

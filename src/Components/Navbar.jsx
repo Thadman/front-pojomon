@@ -24,7 +24,18 @@ class NavBar extends React.Component {
     return (
       <nav>
         <Link to="/game">Monster</Link>
-        {this.choice()}
+        <Link to="/help">Help</Link>
+        <Link to="/login">Login</Link>
+        <span
+          onClick={(event) => {
+            this.props.logoutCallback();
+            localStorage.removeItem("token");
+            this.props.history.push("/login");
+          }}
+        >
+          Logout
+        </span>
+        {/* {this.choice()} */}
       </nav>
     );
   }

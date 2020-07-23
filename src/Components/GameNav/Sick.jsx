@@ -1,16 +1,16 @@
 import React from "react";
 
-const Poop = (props) => {
+const Sick = (props) => {
 
   // {...updateServer()}
 
   return (
     <>
       <div>
-        <button onClick={props.removePoop} >POOP</button>
+        <button onClick={props.healSick} >HEAL</button>
       </div>
     </>
   );
 };
 
-export default Poop;
+export default Sick;

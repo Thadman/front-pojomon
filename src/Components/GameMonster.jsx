@@ -9,20 +9,22 @@ class GameMonster extends React.Component {
   async componentDidMount() {
 
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/monsters/current`,
-        {
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      const data = await response.json();
-      this.setState({ 
-        monster: data.monster,
-        current_user: data.current_user 
-      });
+      setInterval(async () => {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/monsters/current`,
+          {
+            headers: {
+              "Content-type": "application/json",
+              Authorization: `${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        const data = await response.json();
+        this.setState({ 
+          monster: data.monster,
+          current_user: data.current_user 
+        });
+      }, 10000);
     } catch (err) {
       this.setState({
         errMessage: err.message,
@@ -30,7 +32,7 @@ class GameMonster extends React.Component {
     }
   }
 
-  
+
   // oneMin = () => {
   //   // #invoke fetch every 1 min
   // }

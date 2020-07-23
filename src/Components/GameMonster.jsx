@@ -3,6 +3,7 @@ import Stats from "./GameNav/Stats";
 import Feed from "./GameNav/Feed";
 import Poop from "./GameNav/Poop";
 import Sick from "./GameNav/Sick";
+import Logic from "./GameNav/Logic";
 
 class GameMonster extends React.Component {
   state = {monster: null, current_user: null, shouldUpdate: false}
@@ -31,11 +32,6 @@ class GameMonster extends React.Component {
       });
     }
   }
-
-
-  // oneMin = () => {
-  //   // #invoke fetch every 1 min
-  // }
 
   async componentDidUpdate() {
     if(this.state.shouldUpdate) {
@@ -103,6 +99,11 @@ class GameMonster extends React.Component {
             this.setState({ monster: monster })
             this.setState({ shouldUpdate: true })
           }}
+        />}
+
+        {monster && <Logic
+          monster={monster}
+          // setInterval logic x5
         />}
       </>
     );

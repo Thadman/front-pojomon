@@ -1,20 +1,21 @@
 import React from "react";
 
 const Stats = (props) => {
+  // console.log(props)
   return (
     <>
-      {<p>{props.monster.current_user.username}</p>}
-      {<p>Id: {props.monster.monster.id}</p>}
-      {<p>Name: {props.monster.monster.name}</p>}
-      {<p>Age: {props.monster.monster.age}</p>}
-      {<p>Weight: {props.monster.monster.weight}</p>}
-      {<p>Hunger: {props.monster.monster.hunger}</p>}
-      {<p>Strength: {props.monster.monster.strength}</p>}
-      {<p>Poop: {props.monster.monster.poop}</p>}
-      {<p>Sick: {props.monster.monster.sick}</p>}
-      {<p>Death: {props.monster.monster.death}</p>}
-      {<p>Level: {props.monster.monster.level}</p>}
-      {<p>Created_at: {props.monster.monster.created_at}</p>}
+      {<p>{props.user.username}</p>}
+      {<p>Id: {props.monster.id}</p>}
+      {<p>Name: {props.monster.name}</p>}
+      {<p>Age: {props.monster.age}</p>}
+      {<p>Weight: {props.monster.weight}</p>}
+      {<p>Hunger: {props.monster.hunger}</p>}
+      {<p>Strength: {props.monster.strength}</p>}
+      {<p>Poop: {props.monster.poop}</p>}
+      {<p>Sick: {props.monster.sick}</p>}
+      {<p>Death: {props.monster.death}</p>}
+      {<p>Level: {props.monster.level}</p>}
+      {<p>Created_at: {props.monster.created_at}</p>}
     </>
   );
 };

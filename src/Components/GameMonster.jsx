@@ -5,6 +5,7 @@ import Poop from "./GameNav/Poop";
 import Sick from "./GameNav/Sick";
 
 class GameMonster extends React.Component {
+  state = {monster: null, current_user: null, shouldUpdate: false}
   async componentDidMount() {
 
     try {
@@ -17,9 +18,11 @@ class GameMonster extends React.Component {
           },
         }
       );
-      const monster = await response.json(); // RENAME
-      this.setState({ monster: monster });
-      // this.setState({ user: monster });
+      const data = await response.json();
+      this.setState({ 
+        monster: data.monster,
+        current_user: data.current_user 
+      });
     } catch (err) {
       this.setState({
         errMessage: err.message,
@@ -27,57 +30,76 @@ class GameMonster extends React.Component {
     }
   }
 
+  
   // oneMin = () => {
   //   // #invoke fetch every 1 min
   // }
 
   async componentDidUpdate() {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/monsters/${monster.monster.id}`,
-        {
-          method: 'POST',
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ monster: monster.monster }),
-        }
-      );
-      const monster = await response.json(); // RENAME RESPONSE DATA
-      this.setState({ monster: monster });
-    } catch (err) {
-      this.setState({
-        errMessage: err.message,
-      });
+    if(this.state.shouldUpdate) {
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/monsters/${this.state.monster.id}`,
+          {
+            method: 'PUT',
+            headers: {
+              "Content-type": "application/json",
+              Authorization: `${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ monster: this.state.monster }),
+          }
+        );
+        const updatedData = await response.json();
+        this.setState({ 
+          monster: updatedData.monster,
+          current_user: updatedData.current_user,
+          shouldUpdate: false
+        });
+      } catch (err) {
+        this.setState({
+          errMessage: err.message,
+          shouldUpdate: false
+        });
+      }
     }
   }
-  
 
   render() {
     const monster = this.state?.monster;
+    const user = this.state?.current_user;
     return (
       <>
-        {monster && <Stats monster={monster} />}
+        {monster && <Stats monster={monster} user={user} />}
+
         {monster && <Feed 
           monster={monster}
           updateHunger={()=>{
-            this.setState({ hunger: monster.monster.hunger += 1 })
+            monster.hunger += 1
+            this.setState({ monster: monster })
+            this.setState({ shouldUpdate: true })
           }}
           updateStrength={()=>{
-            this.setState({ strength: monster.monster.strength += 1 })
+            monster.strength += 1
+            this.setState({ monster: monster })
+            this.setState({ shouldUpdate: true })
           }}
         />}
+
         {monster && <Poop 
           monster={monster}
           removePoop={()=>{
-            this.setState({ poop: monster.monster.poop = 0 })
+            monster.poop = 0
+            this.setState({ monster: monster })
+            this.setState({ shouldUpdate: true })
           }}
         />}
+
         {monster && <Sick 
           monster={monster}
           healSick={()=>{
-            this.setState({ sick: monster.monster.sick = true })
+            monster.sick = false
+            this.setState({ monster: monster })
+            this.setState({ shouldUpdate: true })
           }}
         />}
       </>

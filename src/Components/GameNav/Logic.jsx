@@ -1,14 +1,7 @@
 import React from "react";
 
 const Logic = (props) => {
-
-
-
-  return (
-    <>
-      
-    </>
-  );
+  return <></>;
 };
 
 export default Logic;

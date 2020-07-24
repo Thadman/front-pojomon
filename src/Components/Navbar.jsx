@@ -25,7 +25,9 @@ class NavBar extends React.Component {
       <nav>
         <Link to="/game">Monster</Link>
         <Link to="/help">Help</Link>
-        <Link to="/login">Login</Link>
+        <Link to="/login" data-testid="login">
+          Login
+        </Link>
         <span
           onClick={(event) => {
             this.props.logoutCallback();

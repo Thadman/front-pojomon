@@ -57,6 +57,7 @@ class Login extends React.Component {
             name="email"
             id="email"
             value={email}
+            data-testid="email"
             onChange={this.onInputChange}
           />
           <label htmlFor="password">Password</label>
@@ -65,6 +66,7 @@ class Login extends React.Component {
             name="password"
             id="password"
             value={password}
+            data-testid="password"
             onChange={this.onInputChange}
           />
           <input type="submit" value="Login" />

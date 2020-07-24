@@ -107,8 +107,33 @@ class GameMonster extends React.Component {
     });
   };
 
+  userHealSick = (sick) => {
+    this.setState((state) => {
+      return {
+        monster: {
+          [sick]: (state.monster[sick] = false),
+          ...state.monster,
+        },
+        shouldUpdate: true,
+      };
+    });
+  };
+
+  computerMakeSick = (sick) => {
+    this.setState((state) => {
+      return {
+        monster: {
+          [sick]: (state.monster[sick] = true),
+          ...state.monster,
+        },
+        shouldUpdate: true,
+      };
+    });
+  };
+
   render() {
     const monster = this.state?.monster;
+    console.log(monster);
     const user = this.state?.current_user;
     return (
       <>
@@ -133,7 +158,7 @@ class GameMonster extends React.Component {
             monster={monster}
             healSick={() => {
               monster.sick = false;
-              this.updateState("sick");
+              this.userHealSick("sick");
             }}
           />
         )}
@@ -143,6 +168,7 @@ class GameMonster extends React.Component {
             monster={monster}
             computerUpdateStat={this.computerUpdateStat}
             computerMakePoop={this.computerMakePoop}
+            computerMakeSick={this.computerMakeSick}
           />
         )}
       </>

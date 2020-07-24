@@ -19,10 +19,17 @@ class Logic extends React.Component {
     }
   };
 
+  computerMakeSick = () => {
+    if ((this.props.monster.poop = 4)) {
+      this.props.computerMakeSick("sick");
+    }
+  };
+
   componentDidMount() {
     setInterval(this.getHungry, 3000);
     setInterval(this.loseStrength, 3000);
     setInterval(this.computerMakePoop, 3000);
+    setInterval(this.computerMakeSick, 3000);
   }
 
   render() {

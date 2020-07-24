@@ -59,28 +59,52 @@ class GameMonster extends React.Component {
     }
   }
 
-  updateState = (statType, operator) => {
-    if (operator === "minus") {
-      this.setState((state) => {
-        return {
-          monster: {
-            [statType]: (state.monster[statType] -= 1),
-            ...state.monster,
-          },
-          shouldUpdate: true,
-        };
-      });
-    } else {
-      this.setState((state) => {
-        return {
-          monster: {
-            [statType]: (state.monster[statType] += 1),
-            ...state.monster,
-          },
-          shouldUpdate: true,
-        };
-      });
-    }
+  userUpdateStat = (statType) => {
+    this.setState((state) => {
+      return {
+        monster: {
+          [statType]: (state.monster[statType] += 1),
+          ...state.monster,
+        },
+        shouldUpdate: true,
+      };
+    });
+  };
+
+  computerUpdateStat = (statType) => {
+    this.setState((state) => {
+      return {
+        monster: {
+          [statType]: (state.monster[statType] -= 1),
+          ...state.monster,
+        },
+        shouldUpdate: true,
+      };
+    });
+  };
+
+  userCleanPoop = (poop) => {
+    this.setState((state) => {
+      return {
+        monster: {
+          [poop]: (state.monster[poop] = 0),
+          ...state.monster,
+        },
+        shouldUpdate: true,
+      };
+    });
+  };
+
+  computerMakePoop = (poop) => {
+    this.setState((state) => {
+      return {
+        monster: {
+          [poop]: (state.monster[poop] += 1),
+          ...state.monster,
+        },
+        shouldUpdate: true,
+      };
+    });
   };
 
   render() {
@@ -92,16 +116,15 @@ class GameMonster extends React.Component {
         {monster && (
           <Feed
             monster={monster}
-            updateHunger={this.updateState}
-            updateStrength={this.updateState}
+            updateHunger={this.userUpdateStat}
+            updateStrength={this.userUpdateStat}
           />
         )}
         {monster && (
           <Poop
             monster={monster}
             removePoop={() => {
-              monster.poop = 0;
-              this.updateState("poop");
+              this.userCleanPoop("poop");
             }}
           />
         )}
@@ -115,7 +138,13 @@ class GameMonster extends React.Component {
           />
         )}
 
-        {monster && <Logic monster={monster} updateState={this.updateState} />}
+        {monster && (
+          <Logic
+            monster={monster}
+            computerUpdateStat={this.computerUpdateStat}
+            computerMakePoop={this.computerMakePoop}
+          />
+        )}
       </>
     );
   }

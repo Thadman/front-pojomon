@@ -21,3 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+netlify.toml
+.netlify
+
+#ignore master key 
+# /config/master.key
+
+# cypress
+cypress/videos
+cypress/screenshots

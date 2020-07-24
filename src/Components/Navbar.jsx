@@ -1,11 +1,50 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
-class Navbar extends React.Component {
+class NavBar extends React.Component {
+  choice = () => {
+    console.log(this.props);
+    if (this.props.loggedIn) {
+      return (
+        <span
+          onClick={(event) => {
+            this.props.logoutCallback();
+            localStorage.removeItem("token");
+            this.props.history.push("/login");
+          }}
+        >
+          Logout
+        </span>
+      );
+    } else {
+      return <Link to="/login">Login</Link>;
+    }
+  };
   render() {
     return (
-      <h1>This is the Navbar page</h1>
-    )
+      <nav>
+        <Link to="/game">Monster</Link>
+        <Link to="/help">Help</Link>
+        <Link to="/login" data-testid="login">
+          Login
+        </Link>
+        <span
+          onClick={(event) => {
+            this.props.logoutCallback();
+            localStorage.removeItem("token");
+            this.props.history.push("/login");
+          }}
+        >
+          Logout
+        </span>
+        {/* {this.choice()} */}
+      </nav>
+    );
   }
 }
 
-export default Navbar
+// componentDidUpdate() {
+//   {this
+// }
+
+export default NavBar;

@@ -1,6 +1,7 @@
 import React from "react";
 
 class Logic extends React.Component {
+
   getHungry = () => {
     if (this.props.monster.hunger > 0) {
       this.props.computerUpdateStat("hunger");
@@ -54,26 +55,28 @@ class Logic extends React.Component {
   };
 
   makeMonsterDie = () => {
-    if (this.props.monster.death === 0) {
-      
-    } else {
-      this.props.monster.hunger === 0 && this.props.makeMonsterDie()
-      this.props.monster.strength === 0 && this.props.makeMonsterDie()
-      this.props.monster.sick === true && this.props.makeMonsterDie()
-    }
+    const previousValue = this.props.monster.death
+    let counter = 0
+    if(this.props.monster.hunger === 0) {counter += 2}
+    if(this.props.monster.strength === 0) {counter += 2}
+    if(this.props.monster.sick === true) {counter += 2}
+    this.props.makeMonsterDie(previousValue, counter)
   }
 
   componentDidMount() {
     setInterval(this.getHungry, 6000);
     setInterval(this.loseStrength, 8000);
     setInterval(this.computerMakePoop, 3000);
-    // setInterval(this.computerMakeSick, 3000);
     setInterval(this.makeMonsterOlder, 10000);
     setInterval(this.makeMonsterDie, 3000)
   }
 
   render() {
-    return <></>;
+  
+    return(
+      <>
+      </>
+    )
   }
 }
 

@@ -1,9 +1,10 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import NavBar from "./Components/Navbar";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import GameMonster from "./Components/GameMonster";
+import Death from "./Components/Death"
 import Help from "./Components/Help";
 import NoMatch from "./Components/NoMatch";
 
@@ -42,7 +43,11 @@ class App extends React.Component {
     }
   }
 
+  
   render() {
+    
+    const loggedIn = localStorage.getItem("token")
+    
     return (
       <div>
         <BrowserRouter>
@@ -59,9 +64,14 @@ class App extends React.Component {
               }}
             />
             <Switch>
+              <Route exact path="/">
+                {loggedIn ? <Redirect to="/game" /> : <Redirect to="/login" />}
+              </Route>
+
               <Route exact path="/login" component={Login} />
               <Route exact path="/sign-up" component={SignUp} />
               <Route exact path="/game" component={GameMonster} />
+              <Route exact path="/death" component={Death} />
               <Route exact path="/help" component={Help} />
               <Route component={NoMatch} />
             </Switch>

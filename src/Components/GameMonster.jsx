@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import Stats from "./GameNav/Stats";
 import Feed from "./GameNav/Feed";
 import Poop from "./GameNav/Poop";
@@ -6,7 +7,7 @@ import Sick from "./GameNav/Sick";
 import Logic from "./GameNav/Logic";
 
 class GameMonster extends React.Component {
-  state = { monster: null, current_user: null, shouldUpdate: false };
+  state = { monster: null, current_user: null, shouldUpdate: false, dieRedirect: false };
   async componentDidMount() {
     try {
       const response = await fetch(
@@ -155,19 +156,33 @@ class GameMonster extends React.Component {
     });
   };
 
-  makeMonsterDie = () => {
-    this.setState((state) => {
-      return {
-        monster: {
-          death: (state.monster.death -= 2),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
+  makeMonsterDie = (previousValue, counter) => {
+    if(counter > previousValue) {
+      this.setState((state) => {
+        return {
+          monster: {
+            death: (state.monster.death = 0),
+            ...state.monster,
+          },
+          shouldUpdate: true,
+          dieRedirect: true,
+        };
+      });
+    } else {
+      this.setState((state) => {
+        return {
+          monster: {
+            death: (state.monster.death -= counter),
+            ...state.monster,
+          },
+          shouldUpdate: true,
+        };
+      });
+    }
   };
 
   render() {
+    const dieRedirect = this.state?.dieRedirect;
     const monster = this.state?.monster;
     const user = this.state?.current_user;
     return (
@@ -209,6 +224,8 @@ class GameMonster extends React.Component {
             makeMonsterDie={this.makeMonsterDie}
           />
         )}
+
+        {dieRedirect && <Redirect to="/death" />}
       </>
     );
   }

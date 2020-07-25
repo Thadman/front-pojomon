@@ -83,11 +83,11 @@ class GameMonster extends React.Component {
     });
   };
 
-  userCleanPoop = (poop) => {
+  userCleanPoop = () => {
     this.setState((state) => {
       return {
         monster: {
-          [poop]: (state.monster[poop] = 0),
+          poop: (state.monster.poop = 0),
           ...state.monster,
         },
         shouldUpdate: true,
@@ -95,11 +95,11 @@ class GameMonster extends React.Component {
     });
   };
 
-  computerMakePoop = (poop) => {
+  computerMakePoop = () => {
     this.setState((state) => {
       return {
         monster: {
-          [poop]: (state.monster[poop] += 1),
+          poop: (state.monster.poop += 1),
           ...state.monster,
         },
         shouldUpdate: true,
@@ -107,11 +107,11 @@ class GameMonster extends React.Component {
     });
   };
 
-  userHealSick = (sick) => {
+  userHealSick = () => {
     this.setState((state) => {
       return {
         monster: {
-          [sick]: (state.monster[sick] = false),
+          sick: (state.monster.sick = false),
           ...state.monster,
         },
         shouldUpdate: true,
@@ -119,11 +119,11 @@ class GameMonster extends React.Component {
     });
   };
 
-  computerMakeSick = (sick) => {
+  computerMakeSick = () => {
     this.setState((state) => {
       return {
         monster: {
-          [sick]: (state.monster[sick] = true),
+          sick: (state.monster.sick = true),
           ...state.monster,
         },
         shouldUpdate: true,
@@ -131,11 +131,11 @@ class GameMonster extends React.Component {
     });
   };
 
-  makeMonsterOlder = (age) => {
+  makeMonsterOlder = () => {
     this.setState((state) => {
       return {
         monster: {
-          [age]: (state.monster[age] += 1),
+          age: (state.monster.age += 1),
           ...state.monster,
         },
         shouldUpdate: true,
@@ -148,6 +148,18 @@ class GameMonster extends React.Component {
       return {
         monster: {
           level: (state.monster.level = evolve),
+          ...state.monster,
+        },
+        shouldUpdate: true,
+      };
+    });
+  };
+
+  makeMonsterDie = () => {
+    this.setState((state) => {
+      return {
+        monster: {
+          death: (state.monster.death -= 2),
           ...state.monster,
         },
         shouldUpdate: true,
@@ -194,6 +206,7 @@ class GameMonster extends React.Component {
             computerMakeSick={this.computerMakeSick}
             makeMonsterOlder={this.makeMonsterOlder}
             makeMonsterEvolve={this.makeMonsterEvolve}
+            makeMonsterDie={this.makeMonsterDie}
           />
         )}
       </>

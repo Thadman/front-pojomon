@@ -7,7 +7,12 @@ import Sick from "./GameNav/Sick";
 import Logic from "./GameNav/Logic";
 
 class GameMonster extends React.Component {
-  state = { monster: null, current_user: null, shouldUpdate: false, dieRedirect: false };
+  state = {
+    monster: null,
+    current_user: null,
+    shouldUpdate: false,
+    dieRedirect: false,
+  };
   async componentDidMount() {
     try {
       const response = await fetch(
@@ -156,8 +161,20 @@ class GameMonster extends React.Component {
     });
   };
 
+  makeMonsterNameChange = (changeName) => {
+    this.setState((state) => {
+      return {
+        monster: {
+          name: (state.monster.name = changeName),
+          ...state.monster,
+        },
+        shouldUpdate: true,
+      };
+    });
+  };
+
   makeMonsterDie = (previousValue, counter) => {
-    if(counter > previousValue) {
+    if (counter > previousValue) {
       this.setState((state) => {
         return {
           monster: {
@@ -222,6 +239,7 @@ class GameMonster extends React.Component {
             makeMonsterOlder={this.makeMonsterOlder}
             makeMonsterEvolve={this.makeMonsterEvolve}
             makeMonsterDie={this.makeMonsterDie}
+            makeMonsterNameChange={this.makeMonsterNameChange}
           />
         )}
 

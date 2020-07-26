@@ -72,18 +72,6 @@ class GameMonster extends React.Component {
     });
   };
 
-  // computerUpdateStat = (statType) => {
-  //   this.setState((state) => {
-  //     return {
-  //       monster: {
-  //         [statType]: (state.monster[statType] -= 1),
-  //         ...state.monster,
-  //       },
-  //       shouldUpdate: true,
-  //     };
-  //   });
-  // };
-
   userCleanPoop = () => {
     this.setState((state) => {
       return {
@@ -95,18 +83,6 @@ class GameMonster extends React.Component {
       };
     });
   };
-
-  // computerMakePoop = () => {
-  //   this.setState((state) => {
-  //     return {
-  //       monster: {
-  //         poop: (state.monster.poop += 1),
-  //         ...state.monster,
-  //       },
-  //       shouldUpdate: true,
-  //     };
-  //   });
-  // };
 
   userHealSick = () => {
     this.setState((state) => {
@@ -120,68 +96,6 @@ class GameMonster extends React.Component {
     });
   };
 
-  // computerMakeSick = () => {
-  //   this.setState((state) => {
-  //     return {
-  //       monster: {
-  //         sick: (state.monster.sick = true),
-  //         ...state.monster,
-  //       },
-  //       shouldUpdate: true,
-  //     };
-  //   });
-  // };
-
-  // makeMonsterOlder = () => {
-  //   this.setState((state) => {
-  //     return {
-  //       monster: {
-  //         age: (state.monster.age += 1),
-  //         ...state.monster,
-  //       },
-  //       shouldUpdate: true,
-  //     };
-  //   });
-  // };
-
-  // makeMonsterEvolve = (evolve) => {
-  //   this.setState((state) => {
-  //     return {
-  //       monster: {
-  //         level: (state.monster.level = evolve),
-  //         ...state.monster,
-  //       },
-  //       shouldUpdate: true,
-  //     };
-  //   });
-  // };
-
-  // makeMonsterDie = (previousValue, counter) => {
-    // if(counter > previousValue) {
-    //   this.setState((state) => {
-    //     return {
-    //       monster: {
-    //         death: (state.monster.death = 0),
-    //         ...state.monster,
-    //       },
-    //       shouldUpdate: true,
-    //       dieRedirect: true,
-    //     };
-    //   });
-  //   } else {
-  //     this.setState((state) => {
-  //       return {
-  //         monster: {
-  //           death: (state.monster.death -= counter),
-  //           ...state.monster,
-  //         },
-  //         shouldUpdate: true,
-  //       };
-  //     });
-  //   }
-  // };
-
-  
   updateState = (newState, boolean) => {
     this.setState({ 
       monster: newState, 
@@ -228,12 +142,6 @@ class GameMonster extends React.Component {
             monster={monster}
             dieRedirect={dieRedirect}
             updateState={this.updateState}
-            // computerUpdateStat={this.computerUpdateStat}
-            // computerMakePoop={this.computerMakePoop}
-            // computerMakeSick={this.computerMakeSick}
-            // makeMonsterOlder={this.makeMonsterOlder}
-            // makeMonsterEvolve={this.makeMonsterEvolve}
-            // makeMonsterDie={this.makeMonsterDie}
           />
         )}
 

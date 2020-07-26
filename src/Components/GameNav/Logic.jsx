@@ -30,16 +30,6 @@ class Logic extends React.Component {
     }
   };
 
-  makeMonsterOlder = () => {
-    if (this.props.monster.level === "Egg") {
-      this.props.monster.level = "Baby";
-      this.props.updateState(this.props.monster);
-    } else {
-      this.props.monster.age += 1
-      this.props.updateState(this.props.monster);
-    }
-  };
-
   makeMonsterDie = () => {
     let counter = 0
     if(this.props.monster.hunger === 0) {counter += 2}
@@ -50,37 +40,45 @@ class Logic extends React.Component {
       this.props.monster.death = 0
       const dieRedirect = true
       this.props.updateState(this.props.monster, dieRedirect);
-    } else {
+    } 
+    else if (this.props.monster.level !== "Egg") {
       this.props.monster.death -= counter
       this.props.updateState(this.props.monster);
     }
   }
 
+  makeMonsterOlder = () => {
+    if (this.props.monster.level !== "Egg") {
+      this.props.monster.age += 1
+      this.makeMonsterEvolve();
+    } else {
+      this.props.monster.level = "Baby";
+      this.props.monster.name = "Botomon"
+      this.props.updateState(this.props.monster);
+    }
+  };
+
   makeMonsterEvolve = () => {
-    switch (this.props.monster.level) {
-      case "Baby":
-        if(this.props.monster.age >= 4) {
+    switch (this.props.monster.age) {
+      case 4:
           this.props.monster.level = "Training"
+          this.props.monster.name = "Koromon"
           this.props.updateState(this.props.monster);
-        };
         break;
-      case "Training":
-        if(this.props.monster.age >= 8) {
-          this.props.makeMonsterEvolve("Rookie")
+      case 8:
+          this.props.monster.level = "Rookie"
+          this.props.monster.name = "Agumon"
           this.props.updateState(this.props.monster);
-        };
         break;
-      case "Rookie":
-        if(this.props.monster.age >= 16) {
-          this.props.makeMonsterEvolve("Champion")
+      case 16:
+        this.props.monster.level = "Champion"
+        this.props.monster.name = "Greymon"
           this.props.updateState(this.props.monster);
-        };
         break;
-      case "Champion":
-        if(this.props.monster.age >= 32) {
-          this.props.makeMonsterEvolve("Ultimate");
+      case 32:
+          this.props.monster.level = "Ultimate";
+          this.props.monster.name = "Metal Greymon"
           this.props.updateState(this.props.monster);
-        } 
         break;
       default:
     }
@@ -88,8 +86,8 @@ class Logic extends React.Component {
   
   componentDidMount() {
     setInterval(this.getHungry, 6000);
-    setInterval(this.loseStrength, 9000);
-    setInterval(this.computerMakePoop, 7000);
+    // setInterval(this.loseStrength, 9000);
+    // setInterval(this.computerMakePoop, 7000);
     setInterval(this.makeMonsterOlder, 10000);
     setInterval(this.makeMonsterDie, 2000)
   }

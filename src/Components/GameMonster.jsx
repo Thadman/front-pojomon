@@ -69,8 +69,20 @@ class GameMonster extends React.Component {
   }
 
   updateState = (newMonsterState, boolean) => {
+    
+    const sickMonster = (sickMonsterName) => {
+      const monsterName = {
+        Botomon: "boto",
+        Koromon: "koro",
+        Agumon: "agu",
+        Greymon: "grey",
+        MetalGreymon: "metGrey",
+      }
+      return monsterName[sickMonsterName]
+    }
     if (newMonsterState.poop === 4) {
       newMonsterState.sick = true 
+      newMonsterState.image = `${sickMonster(newMonsterState.name)}Sick`
     }
     this.setState({ 
       monster: newMonsterState,
@@ -89,9 +101,11 @@ class GameMonster extends React.Component {
       <>
         {dieRedirect && <Redirect to="/death" />}
 
+        <p>{user && user.username}</p>
+
         {monster && <Sprite monster={monster} />}       
 
-        {monster && <Stats monster={monster} user={user} />}
+        {monster && <Stats monster={monster} />}
 
         {monster && (
           <Feed

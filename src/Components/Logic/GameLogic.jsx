@@ -17,18 +17,19 @@ class Logic extends React.Component {
   };
 
   makeMonsterDie = () => {
-    let counter = 0
-    if(this.props.monster.hunger === 0) {counter += 2}
-    if(this.props.monster.strength === 0) {counter += 2}
-    if(this.props.monster.sick === true) {counter += 2}
+    let deathCounter = 0
+    if(this.props.monster.hunger === 0) {deathCounter += 2}
+    if(this.props.monster.strength === 0) {deathCounter += 2}
+    if(this.props.monster.sick === true) {deathCounter += 2}
 
-    if(counter > this.props.monster.death) {
+    if(deathCounter > this.props.monster.death) {
       this.props.monster.death = 0
+      this.props.monster.image = "death"
       const dieRedirect = true
       this.props.updateState(this.props.monster, dieRedirect);
     } 
     else if (this.props.monster.level !== "Egg") {
-      this.props.monster.death -= counter
+      this.props.monster.death -= deathCounter
       this.props.updateState(this.props.monster);
     }
   }
@@ -70,7 +71,7 @@ class Logic extends React.Component {
         break;
       case 32:
           this.props.monster.level = "Ultimate";
-          this.props.monster.name = "Metal Greymon"
+          this.props.monster.name = "MetalGreymon"
           this.props.monster.image = "metGreyWalk"
           this.props.updateState(this.props.monster);
         break;
@@ -81,7 +82,7 @@ class Logic extends React.Component {
   componentDidMount() {
     setInterval(this.getHungry, 11000)
     setInterval(this.loseStrength, 17000);
-    setInterval(this.makeOlder, 3000);
+    setInterval(this.makeOlder, 1000);
   }
 
 

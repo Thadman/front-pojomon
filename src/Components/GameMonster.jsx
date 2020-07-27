@@ -4,15 +4,17 @@ import Stats from "./GameNav/Stats";
 import Feed from "./GameNav/Feed";
 import Poop from "./GameNav/Poop";
 import Sick from "./GameNav/Sick";
-import Logic from "./GameNav/Logic";
+import Logic from "./Logic/GameLogic";
+import Sprite from "./Logic/Sprite";
 
 class GameMonster extends React.Component {
   state = {
-    monster: null,
-    current_user: null,
+    monster: {},
+    current_user: {},
     shouldUpdate: false,
     dieRedirect: false,
   };
+
   async componentDidMount() {
     try {
       const response = await fetch(
@@ -65,185 +67,37 @@ class GameMonster extends React.Component {
     }
   }
 
-  userUpdateStat = (statType) => {
-    this.setState((state) => {
-      return {
-        monster: {
-          [statType]: (state.monster[statType] += 1),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  computerUpdateStat = (statType) => {
-    this.setState((state) => {
-      return {
-        monster: {
-          [statType]: (state.monster[statType] -= 1),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  userCleanPoop = () => {
-    this.setState((state) => {
-      return {
-        monster: {
-          poop: (state.monster.poop = 0),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  userHealSick = () => {
-    this.setState((state) => {
-      return {
-        monster: {
-          sick: (state.monster.sick = false),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  computerMakePoop = () => {
-    this.setState((state) => {
-      return {
-        monster: {
-          poop: (state.monster.poop += 1),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  computerMakeSick = () => {
-    this.setState((state) => {
-      return {
-        monster: {
-          sick: (state.monster.sick = true),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  makeMonsterOlder = () => {
-    this.setState((state) => {
-      return {
-        monster: {
-          age: (state.monster.age += 1),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  makeMonsterEvolve = (evolve) => {
-    this.setState((state) => {
-      return {
-        monster: {
-          level: (state.monster.level = evolve),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  makeMonsterNameChange = (changeName) => {
-    this.setState((state) => {
-      return {
-        monster: {
-          name: (state.monster.name = changeName),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  makeMonsterDie = (previousValue, counter) => {
-    if (counter > previousValue) {
-      this.setState((state) => {
-        return {
-          monster: {
-            death: (state.monster.death = 0),
-            ...state.monster,
-          },
-          shouldUpdate: true,
-          dieRedirect: true,
-        };
-      });
-    } else {
-      this.setState((state) => {
-        return {
-          monster: {
-            death: (state.monster.death -= counter),
-            ...state.monster,
-          },
-          shouldUpdate: true,
-        };
-      });
+  updateState = (newMonsterState, boolean) => {
+    if (newMonsterState.poop === 4) {
+      newMonsterState.sick = true;
     }
+    this.setState({
+      monster: newMonsterState,
+      shouldUpdate: true,
+      dieRedirect: boolean,
+    });
   };
 
   render() {
     const dieRedirect = this.state?.dieRedirect;
-    const monster = this.state?.monster;
     const user = this.state?.current_user;
+    const monster = this.state?.monster;
+
     return (
       <>
-        {monster && <Stats monster={monster} user={user} />}
-        {monster && (
-          <Feed
-            monster={monster}
-            updateHunger={this.userUpdateStat}
-            updateStrength={this.userUpdateStat}
-          />
-        )}
-        {monster && (
-          <Poop
-            monster={monster}
-            removePoop={() => {
-              this.userCleanPoop("poop");
-            }}
-          />
-        )}
-        {monster && (
-          <Sick
-            monster={monster}
-            healSick={() => {
-              monster.sick = false;
-              this.userHealSick("sick");
-            }}
-          />
-        )}
-
-        {monster && (
-          <Logic
-            monster={monster}
-            computerUpdateStat={this.computerUpdateStat}
-            computerMakePoop={this.computerMakePoop}
-            computerMakeSick={this.computerMakeSick}
-            makeMonsterOlder={this.makeMonsterOlder}
-            makeMonsterEvolve={this.makeMonsterEvolve}
-            makeMonsterDie={this.makeMonsterDie}
-            makeMonsterNameChange={this.makeMonsterNameChange}
-          />
-        )}
-
         {dieRedirect && <Redirect to="/death" />}
+
+        {monster && <Sprite monster={monster} />}
+
+        {monster && <Stats monster={monster} user={user} />}
+
+        {monster && <Feed monster={monster} updateState={this.updateState} />}
+
+        {monster && <Poop monster={monster} updateState={this.updateState} />}
+
+        {monster && <Sick monster={monster} updateState={this.updateState} />}
+
+        {monster && <Logic monster={monster} updateState={this.updateState} />}
       </>
     );
   }

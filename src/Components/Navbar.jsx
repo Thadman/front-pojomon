@@ -37,14 +37,11 @@ class NavBar extends React.Component {
         >
           Logout
         </span>
-        {/* {this.choice()} */}
       </nav>
     );
   }
 }
 
-// componentDidUpdate() {
-//   {this
-// }
+
 
 export default NavBar;

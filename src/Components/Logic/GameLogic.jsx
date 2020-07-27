@@ -16,20 +16,20 @@ class Logic extends React.Component {
     }
   };
 
-  makePoop = () => {
-    if (this.props.monster.level !== "Egg" && this.props.monster.poop < 4) {
-      this.makeSick()
-      this.props.monster.poop += 1
-      this.props.updateState(this.props.monster);
-    }
-  };
+  // makePoop = () => {
+  //   this.makeSick()
+  //   if (this.props.monster.level !== "Egg" && this.props.monster.poop < 4) {
+  //     this.props.monster.poop += 1
+  //     this.props.updateState(this.props.monster);
+  //   }
+  // };
 
-  makeSick = () => {
-    if (this.props.monster.poop === 4) {
-      this.props.monster.sick = true
-      this.props.updateState(this.props.monster);
-    }
-  };
+  // makeSick = () => {
+  //   if (this.props.monster.poop === 4) {
+  //     this.props.monster.sick = true
+  //     this.props.updateState(this.props.monster);
+  //   }
+  // };
 
   makeMonsterDie = () => {
     let counter = 0
@@ -52,9 +52,12 @@ class Logic extends React.Component {
     if (this.props.monster.level !== "Egg") {
       this.props.monster.age += 1
       this.evolve();
+      this.makeMonsterDie()
     } else {
       this.props.monster.level = "Baby";
       this.props.monster.name = "Botomon"
+      this.props.monster.hunger = 1
+      this.props.monster.strength = 1
       this.props.monster.image = "botoWalk"
       this.props.updateState(this.props.monster);
     }
@@ -91,11 +94,11 @@ class Logic extends React.Component {
   };
   
   componentDidMount() {
-    setInterval(this.getHungry, 6000);
-    setInterval(this.loseStrength, 9000);
-    setInterval(this.makePoop, 7000);
+    setInterval(this.getHungry, 11000)
+    setInterval(this.loseStrength, 17000);
     setInterval(this.makeOlder, 10000);
-    setInterval(this.makeMonsterDie, 2000)
+    // setInterval(this.makePoop, 9000);
+    // setInterval(this.makeMonsterDie, 5000)
   }
 
 

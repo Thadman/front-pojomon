@@ -1,42 +1,49 @@
 import React from "react";
 
 const Feed = (props) => {
-  
+
   const lessThanFiveHunger = () => {
-    if (props.monster.hunger < 5) {
+    console.log(props)
+    props.counter += 1
+    makePoop()
+    if (props.monster.hunger < 5 && props.monster.level !== "Egg" ) {
       props.monster.hunger += 1
       props.updateState(props.monster);
     }
   };
 
   const lessThanFiveStrength = () => {
-    if (props.monster.strength < 5) {
+    props.counter += 1
+    makePoop()
+    if (props.monster.strength < 5 && props.monster.level !== "Egg" ) {
       props.monster.strength += 1
       props.updateState(props.monster);
     }
   };
 
-  const eatSprite = () => {
-    switch (this.monster.name) {
-      case "Botomon": 
-
-      break;
-      case "Koromon":
-
-      break;
-      case "Agumon":
-
-      break;
-      case "Greymon":
-
-      break;
-      case "Metal Greymon":
-
-      break;
-      default:
+  const makePoop = () => {
+    if(props.counter % 3 === 0) {
+      if (props.monster.level !== "Egg" && props.monster.poop < 4) {
+        props.monster.poop += 1
+        props.updateState(props.monster);
+      } else if (props.monster.poop === 4) {
+        props.monster.sick = true
+        props.updateState(props.monster);
+      }
     }
+  };
 
-  }
+  // const makeSick = () => {
+  //   if (props.monster.poop === 4) {
+  //     props.monster.sick = true
+  //     props.updateState(props.monster);
+  //   }
+  // };
+
+  // if(counter % 3 === 0) {
+  //   makePoop()
+  //   console.log('true')
+  // }
 
   return (
     <>

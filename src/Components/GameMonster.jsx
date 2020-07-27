@@ -14,6 +14,7 @@ class GameMonster extends React.Component {
     current_user: {}, 
     shouldUpdate: false, 
     dieRedirect: false, 
+    counter: 0,
   };
 
   async componentDidMount() {
@@ -81,6 +82,7 @@ class GameMonster extends React.Component {
     const dieRedirect = this.state?.dieRedirect
     const user = this.state?.current_user;
     const monster = this.state?.monster;
+    let counter = this.state?.counter 
 
     return (
       <>
@@ -93,6 +95,7 @@ class GameMonster extends React.Component {
         {monster && (
           <Feed
             monster={monster}
+            counter={counter}
             updateState={this.updateState}
           />
         )}

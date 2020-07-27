@@ -4,10 +4,18 @@ import Stats from "./GameNav/Stats";
 import Feed from "./GameNav/Feed";
 import Poop from "./GameNav/Poop";
 import Sick from "./GameNav/Sick";
-import Logic from "./GameNav/Logic";
+import Logic from "./Logic/GameLogic";
+import Sprite from "./Logic/Sprite";
 
 class GameMonster extends React.Component {
-  state = { monster: null, current_user: null, shouldUpdate: false, dieRedirect: false, };
+
+  state = { 
+    monster: {}, 
+    current_user: {}, 
+    shouldUpdate: false, 
+    dieRedirect: false, 
+  };
+
   async componentDidMount() {
     try {
       const response = await fetch(
@@ -60,92 +68,55 @@ class GameMonster extends React.Component {
     }
   }
 
-  userUpdateStat = (statType) => {
-    this.setState((state) => {
-      return {
-        monster: {
-          [statType]: (state.monster[statType] += 1),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  userCleanPoop = () => {
-    this.setState((state) => {
-      return {
-        monster: {
-          poop: (state.monster.poop = 0),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
-  userHealSick = () => {
-    this.setState((state) => {
-      return {
-        monster: {
-          sick: (state.monster.sick = false),
-          ...state.monster,
-        },
-        shouldUpdate: true,
-      };
-    });
-  };
-
   updateState = (newState, boolean) => {
     this.setState({ 
-      monster: newState, 
+      monster: newState,
       shouldUpdate: true,
       dieRedirect: boolean,
     })
   }
 
   render() {
-    let dieRedirect = this.state.dieRedirect;
-    const monster = this.state?.monster;
+
+    const dieRedirect = this.state?.dieRedirect
     const user = this.state?.current_user;
-    
+    const monster = this.state?.monster;
+
     return (
       <>
+        {dieRedirect && <Redirect to="/death" />}
+
+        {monster && <Sprite monster={monster} />}       
+
         {monster && <Stats monster={monster} user={user} />}
+
         {monster && (
           <Feed
             monster={monster}
-            updateHunger={this.userUpdateStat}
-            updateStrength={this.userUpdateStat}
+            updateState={this.updateState}
           />
         )}
+
         {monster && (
           <Poop
             monster={monster}
-            removePoop={() => {
-              this.userCleanPoop("poop");
-            }}
+            updateState={this.updateState}
           />
         )}
+
         {monster && (
           <Sick
             monster={monster}
-            healSick={() => {
-              monster.sick = false;
-              this.userHealSick("sick");
-            }}
+            updateState={this.updateState}
           />
         )}
 
         {monster && (
           <Logic
             monster={monster}
-            dieRedirect={dieRedirect}
             updateState={this.updateState}
           />
         )}
-
-        {dieRedirect && <Redirect to="/death" />}
       </>
     );
   }

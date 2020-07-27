@@ -16,14 +16,15 @@ class Logic extends React.Component {
     }
   };
 
-  computerMakePoop = () => {
+  makePoop = () => {
     if (this.props.monster.level !== "Egg" && this.props.monster.poop < 4) {
+      this.makeSick()
       this.props.monster.poop += 1
       this.props.updateState(this.props.monster);
     }
   };
 
-  computerMakeSick = () => {
+  makeSick = () => {
     if (this.props.monster.poop === 4) {
       this.props.monster.sick = true
       this.props.updateState(this.props.monster);
@@ -47,37 +48,42 @@ class Logic extends React.Component {
     }
   }
 
-  makeMonsterOlder = () => {
+  makeOlder = () => {
     if (this.props.monster.level !== "Egg") {
       this.props.monster.age += 1
-      this.makeMonsterEvolve();
+      this.evolve();
     } else {
       this.props.monster.level = "Baby";
       this.props.monster.name = "Botomon"
+      this.props.monster.image = "botoWalk"
       this.props.updateState(this.props.monster);
     }
   };
 
-  makeMonsterEvolve = () => {
+  evolve = () => {
     switch (this.props.monster.age) {
       case 4:
           this.props.monster.level = "Training"
           this.props.monster.name = "Koromon"
+          this.props.monster.image = "koroWalk"
           this.props.updateState(this.props.monster);
         break;
       case 8:
           this.props.monster.level = "Rookie"
           this.props.monster.name = "Agumon"
+          this.props.monster.image = "aguWalk"
           this.props.updateState(this.props.monster);
         break;
       case 16:
         this.props.monster.level = "Champion"
         this.props.monster.name = "Greymon"
+        this.props.monster.image = "greyWalk"
           this.props.updateState(this.props.monster);
         break;
       case 32:
           this.props.monster.level = "Ultimate";
           this.props.monster.name = "Metal Greymon"
+          this.props.monster.image = "metGreyWalk"
           this.props.updateState(this.props.monster);
         break;
       default:
@@ -86,9 +92,9 @@ class Logic extends React.Component {
   
   componentDidMount() {
     setInterval(this.getHungry, 6000);
-    // setInterval(this.loseStrength, 9000);
-    // setInterval(this.computerMakePoop, 7000);
-    setInterval(this.makeMonsterOlder, 10000);
+    setInterval(this.loseStrength, 9000);
+    setInterval(this.makePoop, 7000);
+    setInterval(this.makeOlder, 10000);
     setInterval(this.makeMonsterDie, 2000)
   }
 

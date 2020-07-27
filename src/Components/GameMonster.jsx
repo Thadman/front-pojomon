@@ -101,11 +101,11 @@ class GameMonster extends React.Component {
     });
   };
 
-  computerMakePoop = () => {
+  userHealSick = () => {
     this.setState((state) => {
       return {
         monster: {
-          poop: (state.monster.poop += 1),
+          sick: (state.monster.sick = false),
           ...state.monster,
         },
         shouldUpdate: true,
@@ -113,11 +113,11 @@ class GameMonster extends React.Component {
     });
   };
 
-  userHealSick = () => {
+  computerMakePoop = () => {
     this.setState((state) => {
       return {
         monster: {
-          sick: (state.monster.sick = false),
+          poop: (state.monster.poop += 1),
           ...state.monster,
         },
         shouldUpdate: true,

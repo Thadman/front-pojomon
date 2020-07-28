@@ -45,7 +45,7 @@ describe("when the user clicks SignUp link", () => {
   });
 });
 
-// Testing login with username and password from the Rails backend
+// Testing login with username and password from the User.json
 
 describe("with the correct login credentials, user can login ", () => {
   before(() => {
@@ -61,28 +61,3 @@ describe("with the correct login credentials, user can login ", () => {
     cy.url().should("eql", "http://localhost:8080/game");
   });
 });
-
-describe("be logged in and click on the attributes buttons", () => {
-  beforeEach(() => {
-    cy.fixture("user.json").then((user) => {
-      cy.visit("/game");
-      // cy.findByLabelText(/email/i).type(user.email);
-      // cy.findByLabelText(/password/i).type(user.password);
-    });
-  });
-
-  // do these go in game spec?
-  it("should click the POOP attribute and have the emoji move up", () => {
-    cy.get(":nth-child(16) > button").click();
-    // .find("img")
-    // .should("have.length", 4);
-  });
-  it("should click on the HEAL attribute and have the emoji move up", () => {
-    cy.get(":nth-child(17) > button").click();
-  });
-});
-
-// beforeEach(() => {
-//   cy.visit("/game");
-//   cy.findByTestId("login").click();
-// });

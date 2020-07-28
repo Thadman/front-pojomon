@@ -108,28 +108,37 @@ class GameMonster extends React.Component {
       <>
         {dieRedirect && <Redirect to="/death" />}
 
-
-
-
         <p>{user && user.username}</p>
 
-        {monster && (
-          <Sprite 
-            monster={monster} 
-            updateSprite={this.updateSprite} 
-          />
-        )}       
+        <div className="monsterContainer">
 
+          <div className="sprite">
+            {monster && (
+              <Sprite 
+                monster={monster} 
+                updateSprite={this.updateSprite} 
+              />
+            )}       
+          </div>
 
-        {monster && <Stats monster={monster} />}
+          <div className="stats">
+            {monster && <Stats monster={monster} />}
+          </div>
 
-        {monster && <Feed monster={monster} updateState={this.updateState} />}
+          <div className="feed">
+            {monster && <Feed monster={monster} updateState={this.updateState} />}
+          </div>
+          
+          <div className="poop">
+            {monster && <Poop monster={monster} updateState={this.updateState} />}
+          </div>
 
-        {monster && <Poop monster={monster} updateState={this.updateState} />}
+          <div className="sick">
+            {monster && <Sick monster={monster} updateState={this.updateState} />}
+          </div>
+        </div>
 
-        {monster && <Sick monster={monster} updateState={this.updateState} />}
-
-        {monster && <Logic monster={monster} updateState={this.updateState} />}
+          {monster && <Logic monster={monster} updateState={this.updateState} />}
       </>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 
 const Help = () => {
   return (
-    <>
+    <div class="help-container">
       <h1>POJOmon!</h1>
       When logging in for the first-time, user will be presented with an egg
       that will hatch in 10 seconds After hatching your monster will be very
@@ -57,7 +57,7 @@ const Help = () => {
         Champion -> Ultimate 10sec -> 1min -> 1hour -> 12hours -> 24hours ->
         Final
       </p>
-    </>
+    </div>
   );
 };
 

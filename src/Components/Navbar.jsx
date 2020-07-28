@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import monsterIcon from "../Assets/icons/monster.gif";
 
 class NavBar extends React.Component {
   render() {
     return (
-      <div>
+      <div className="navBar">
         {}
-        <Link to="/game">Monster</Link>
+        <Link to="/game">
+          <img src={monsterIcon} />
+        </Link>
         <Link to="/help">Help</Link>
         <Link to="/login" data-testid="login">
           Login

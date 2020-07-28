@@ -20,6 +20,35 @@ code {
   width: 100vw;
   margin: 0 auto;
   background-color: #e6fced;
+  font-size: 20px;
+
+  .navBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2px;
+    border: 2px solid #0f380f;
+    box-shadow: #2c382e80 10px 10px 10px 0px;
+    border-radius: 3px;
+    background-color: #9bbc0f;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .help-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #0f380f;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: #9dbfa4;
+    box-shadow: #2c382e80 10px 10px 10px 0px;
+    max-width: 568px;
+    max-height: 700px;
+    overflow: scroll;
+  }
 
   .form-container {
     display: flex;
@@ -29,6 +58,8 @@ code {
     border-radius: 3px;
     background-color: #9dbfa4;
     box-shadow: #2c382e80 10px 10px 10px 0px;
+    min-width: 300px;
+    min-height: 500px;
 
     h1 {
       text-align: center;
@@ -38,13 +69,19 @@ code {
       display: flex;
       flex-direction: column;
       input {
-        margin-top: 15px;
+        margin-top: 30px;
+        font-size: 20px;
+        border-radius: 3px;
       }
     }
 
     .button {
       display: flex;
       justify-content: center;
+
+      input {
+        border-radius: 3px;
+      }
     }
 
     .clickHere {

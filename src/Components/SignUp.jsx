@@ -55,36 +55,38 @@ class SignUp extends React.Component {
         <h1>SignUp</h1>
         {errMessage && <span>{errMessage}</span>}
         <form onSubmit={this.onFormSubmit}>
-          <label htmlFor="username">Username</label>
           <input
             type="username"
             name="username"
             id="username"
             value={username}
             data-testid="username"
+            placeholder="Username"
             onChange={this.onInputChange}
           />
-          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
             id="email"
             value={email}
             data-testid="email"
+            placeholder="Email"
             onChange={this.onInputChange}
           />
-          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             id="password"
             value={password}
             data-testid="password"
+            placeholder="Password"
             onChange={this.onInputChange}
           />
-          <input type="submit" value="SignUp" />
+          <div className="button">
+            <input type="submit" value="SignUp" />
+          </div>
         </form>
-        <p>
+        <p className="clickHere">
           Click <Link to="/login">HERE</Link> to Login
         </p>
       </div>

@@ -17,18 +17,19 @@ class Logic extends React.Component {
   };
 
   makeMonsterDie = () => {
-    let counter = 0
-    if(this.props.monster.hunger === 0) {counter += 2}
-    if(this.props.monster.strength === 0) {counter += 2}
-    if(this.props.monster.sick === true) {counter += 2}
+    let deathCounter = 0
+    if(this.props.monster.hunger === 0) {deathCounter += 2}
+    if(this.props.monster.strength === 0) {deathCounter += 2}
+    if(this.props.monster.sick === true) {deathCounter += 2}
 
-    if(counter > this.props.monster.death) {
+    if(deathCounter > this.props.monster.death) {
       this.props.monster.death = 0
+      this.props.monster.image = "death"
       const dieRedirect = true
       this.props.updateState(this.props.monster, dieRedirect);
     } 
     else if (this.props.monster.level !== "Egg") {
-      this.props.monster.death -= counter
+      this.props.monster.death -= deathCounter
       this.props.updateState(this.props.monster);
     }
   }
@@ -43,7 +44,7 @@ class Logic extends React.Component {
       this.props.monster.name = "Botomon"
       this.props.monster.hunger = 1
       this.props.monster.strength = 1
-      this.props.monster.image = "botoWalk"
+      this.props.monster.image = "eggHatch"
       this.props.updateState(this.props.monster);
     }
   };
@@ -51,40 +52,38 @@ class Logic extends React.Component {
   evolve = () => {
     switch (this.props.monster.age) {
       case 4:
-          this.props.monster.level = "Training"
-          this.props.monster.name = "Koromon"
-          this.props.monster.image = "koroWalk"
-          this.props.updateState(this.props.monster);
+        this.props.monster.level = "Training"
+        this.props.monster.name = "Koromon"
+        this.props.monster.image = "evolve"
+        this.props.updateState(this.props.monster);
         break;
       case 8:
-          this.props.monster.level = "Rookie"
-          this.props.monster.name = "Agumon"
-          this.props.monster.image = "aguWalk"
-          this.props.updateState(this.props.monster);
+        this.props.monster.level = "Rookie"
+        this.props.monster.name = "Agumon"
+        this.props.monster.image = "evolve"
+        this.props.updateState(this.props.monster);
         break;
       case 16:
         this.props.monster.level = "Champion"
         this.props.monster.name = "Greymon"
-        this.props.monster.image = "greyWalk"
-          this.props.updateState(this.props.monster);
+        this.props.monster.image = "evolve"
+        this.props.updateState(this.props.monster);
         break;
       case 32:
-          this.props.monster.level = "Ultimate";
-          this.props.monster.name = "Metal Greymon"
-          this.props.monster.image = "metGreyWalk"
-          this.props.updateState(this.props.monster);
+        this.props.monster.level = "Ultimate";
+        this.props.monster.name = "MetalGreymon"
+        this.props.monster.image = "evolve"
+        this.props.updateState(this.props.monster);
         break;
       default:
     }
   };
   
   componentDidMount() {
-    setInterval(this.getHungry, 11000)
-    setInterval(this.loseStrength, 17000);
+    setInterval(this.getHungry, 13000)
+    setInterval(this.loseStrength, 16000);
     setInterval(this.makeOlder, 3000);
   }
-
-
 
   render() {
   

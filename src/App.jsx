@@ -4,7 +4,7 @@ import NavBar from "./Components/Navbar";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import GameMonster from "./Components/GameMonster";
-import Death from "./Components/Death"
+import Death from "./Components/Death";
 import Help from "./Components/Help";
 import NoMatch from "./Components/NoMatch";
 
@@ -43,13 +43,11 @@ class App extends React.Component {
     }
   }
 
-  
   render() {
-    
-    const loggedIn = localStorage.getItem("token")
-    
+    const loggedIn = localStorage.getItem("token");
+
     return (
-      <div>
+      <div className="container">
         <BrowserRouter>
           <div>
             <Route

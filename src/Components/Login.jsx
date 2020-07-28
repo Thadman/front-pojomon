@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "../Stylesheets/index.scss";
 
 class Login extends React.Component {
   state = { email: "", password: "", errMessage: "" };
@@ -49,28 +50,31 @@ class Login extends React.Component {
       <div className="form-container">
         <h1>Login</h1>
         {errMessage && <span>{errMessage}</span>}
+
         <form onSubmit={this.onFormSubmit}>
-          <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
             id="email"
             value={email}
             data-testid="email"
+            placeholder="Email"
             onChange={this.onInputChange}
           />
-          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
             id="password"
             value={password}
             data-testid="password"
+            placeholder="Password"
             onChange={this.onInputChange}
           />
-          <input type="submit" value="Login" />
+          <div className="button">
+            <input type="submit" value="Login" />
+          </div>
         </form>
-        <p>
+        <p className="clickHere">
           Click <Link to="/sign-up">HERE</Link> to SignUp
         </p>
       </div>

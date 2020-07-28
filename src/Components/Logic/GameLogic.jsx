@@ -82,7 +82,7 @@ class Logic extends React.Component {
   componentDidMount() {
     setInterval(this.getHungry, 13000)
     setInterval(this.loseStrength, 16000);
-    setInterval(this.makeOlder, 3000);
+    setInterval(this.makeOlder, 10000);
   }
 
   render() {

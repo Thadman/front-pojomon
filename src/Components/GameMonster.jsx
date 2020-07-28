@@ -8,12 +8,11 @@ import Logic from "./Logic/GameLogic";
 import Sprite from "./Logic/Sprite";
 
 class GameMonster extends React.Component {
-
-  state = { 
-    monster: {}, 
-    current_user: {}, 
-    shouldUpdate: false, 
-    dieRedirect: false, 
+  state = {
+    monster: {},
+    current_user: {},
+    shouldUpdate: false,
+    dieRedirect: false,
   };
 
   async componentDidMount() {
@@ -92,22 +91,25 @@ class GameMonster extends React.Component {
       newMonsterState.sick = true 
       newMonsterState.image = `${getMonster(newMonsterState.name)}Sick`
     }
-    this.setState({ 
+    
+    this.setState({
       monster: newMonsterState,
       shouldUpdate: true,
       dieRedirect: boolean,
-    })
-  }
+    });
+  };
 
   render() {
-
-    const dieRedirect = this.state?.dieRedirect
+    const dieRedirect = this.state?.dieRedirect;
     const user = this.state?.current_user;
     const monster = this.state?.monster;
 
     return (
       <>
         {dieRedirect && <Redirect to="/death" />}
+
+
+
 
         <p>{user && user.username}</p>
 
@@ -118,35 +120,16 @@ class GameMonster extends React.Component {
           />
         )}       
 
+
         {monster && <Stats monster={monster} />}
 
-        {monster && (
-          <Feed
-            monster={monster}
-            updateState={this.updateState}
-          />
-        )}
+        {monster && <Feed monster={monster} updateState={this.updateState} />}
 
-        {monster && (
-          <Poop
-            monster={monster}
-            updateState={this.updateState}
-          />
-        )}
+        {monster && <Poop monster={monster} updateState={this.updateState} />}
 
-        {monster && (
-          <Sick
-            monster={monster}
-            updateState={this.updateState}
-          />
-        )}
+        {monster && <Sick monster={monster} updateState={this.updateState} />}
 
-        {monster && (
-          <Logic
-            monster={monster}
-            updateState={this.updateState}
-          />
-        )}
+        {monster && <Logic monster={monster} updateState={this.updateState} />}
       </>
     );
   }

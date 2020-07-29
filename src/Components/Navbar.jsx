@@ -3,27 +3,25 @@ import { Link } from "react-router-dom";
 import monsterIcon from "../Assets/icons/monster.gif";
 
 class NavBar extends React.Component {
-
   // let cantAccess = false
-  
-  // if (localstorageitem = true) {
+
+  // if (localStorage.getItem = true) {
   //   cantAccess = true
   // }
 
   render() {
+    console.log(localStorage.getItem);
     return (
       <div className="navBar">
-
         <div className="icon-link">
           <Link to="/game">
-            <img src={monsterIcon} />
+            <img src={monsterIcon} alt="" />
           </Link>
         </div>
 
         <div className="icon-link">
           <Link to="/help">?</Link>
         </div>
-
 
         <Link to="/login" data-testid="login">
           Login
@@ -44,4 +42,3 @@ class NavBar extends React.Component {
 }
 
 export default NavBar;
-

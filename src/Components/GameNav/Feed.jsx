@@ -1,4 +1,6 @@
 import React from "react";
+import foodButton from "../../Assets/icons/foodbutton.gif"
+import vitaminButton from "../../Assets/icons/vitaminbutton.gif"
 
 const Feed = (props) => {
 
@@ -32,8 +34,8 @@ const Feed = (props) => {
   return (
     <>
       <div className="food">
-        <button onClick={lessThanFiveHunger}>FOOD</button>
-        <button onClick={lessThanFiveStrength}>VITAMIN</button>
+        <img src={foodButton} onClick={lessThanFiveHunger}></img>
+        <img src={vitaminButton} onClick={lessThanFiveStrength}></img>
       </div>
     </>
   );

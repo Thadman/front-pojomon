@@ -1,4 +1,6 @@
 import React from "react";
+import healButton from "../../Assets/icons/healbutton.gif"
+
 
 const Sick = (props) => {
 
@@ -23,7 +25,7 @@ const Sick = (props) => {
   return (
     <>
       <div>
-        <button onClick={cureSick}>HEAL</button>
+        <img src={healButton} onClick={cureSick}></img>
       </div>
     </>
   );

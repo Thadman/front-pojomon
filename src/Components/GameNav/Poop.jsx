@@ -1,4 +1,6 @@
 import React from "react";
+import poopButton from "../../Assets/icons/poopbutton.gif"
+
 
 const Poop = (props) => {
 
@@ -10,7 +12,7 @@ const Poop = (props) => {
   return (
     <>
       <div>
-        <button onClick={removePoop}>POOP</button>
+        <img src={poopButton} onClick={removePoop}></img>
       </div>
     </>
   );

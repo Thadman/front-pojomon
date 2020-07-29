@@ -3,14 +3,28 @@ import { Link } from "react-router-dom";
 import monsterIcon from "../Assets/icons/monster.gif";
 
 class NavBar extends React.Component {
+
+  // let cantAccess = false
+  
+  // if (localstorageitem = true) {
+  //   cantAccess = true
+  // }
+
   render() {
     return (
       <div className="navBar">
-        {}
-        <Link to="/game">
-          <img src={monsterIcon} />
-        </Link>
-        <Link to="/help">Help</Link>
+
+        <div className="icon-link">
+          <Link to="/game">
+            <img src={monsterIcon} />
+          </Link>
+        </div>
+
+        <div className="icon-link">
+          <Link to="/help">?</Link>
+        </div>
+
+
         <Link to="/login" data-testid="login">
           Login
         </Link>
@@ -31,14 +45,3 @@ class NavBar extends React.Component {
 
 export default NavBar;
 
-{
-  /* <span
-          onClick={(event) => {
-            this.props.logoutCallback();
-            localStorage.removeItem("token");
-            this.props.history.push("/login");
-          }}
-        >
-          Logout
-        </span> */
-}

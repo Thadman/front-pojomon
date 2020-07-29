@@ -9,7 +9,6 @@ class SignUp extends React.Component {
     this.setState({
       [key]: event.target.value,
     });
-    console.log(this.state);
   };
 
   onFormSubmit = async (event) => {

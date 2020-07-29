@@ -48,6 +48,7 @@ class App extends React.Component {
 
     return (
       <div className="container">
+        <h1>POJOmon</h1>
         <BrowserRouter>
           <div>
             <Route

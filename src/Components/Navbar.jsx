@@ -10,7 +10,7 @@ class NavBar extends React.Component {
   // }
 
   render() {
-    console.log(localStorage.getItem);
+    // console.log(localStorage.getItem);
     return (
       <div className="navBar">
         <div className="icon-link">

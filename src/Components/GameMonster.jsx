@@ -67,16 +67,18 @@ class GameMonster extends React.Component {
     }
   }
 
-  updateSprite = (newMonsterSpriteState) => {
-    this.setState({ 
-      monster: newMonsterSpriteState,
+  updateSprite = (newMonsterSprite) => {
+    this.setState({
+      monster: {
+        image: newMonsterSprite,
+        ...this.state.monster,
+      },
       shouldUpdate: true,
       ...this.state,
-    })
-  }
+    });
+  };
 
   updateState = (newMonsterState, boolean) => {
-    
     const getMonster = (sickMonsterName) => {
       const monsterName = {
         Botomon: "boto",
@@ -84,14 +86,14 @@ class GameMonster extends React.Component {
         Agumon: "agu",
         Greymon: "grey",
         MetalGreymon: "metGrey",
-      }
-      return monsterName[sickMonsterName]
-    }
+      };
+      return monsterName[sickMonsterName];
+    };
     if (newMonsterState.poop === 4) {
-      newMonsterState.sick = true 
-      newMonsterState.image = `${getMonster(newMonsterState.name)}Sick`
+      newMonsterState.sick = true;
+      newMonsterState.image = `${getMonster(newMonsterState.name)}Sick`;
     }
-    
+
     this.setState({
       monster: newMonsterState,
       shouldUpdate: true,
@@ -109,41 +111,38 @@ class GameMonster extends React.Component {
         {dieRedirect && <Redirect to="/death" />}
 
         <div className="form-container">
-
-        <div className="username">
-          {user && user.username}
-          </div>
+          <div className="username">{user && user.username}</div>
 
           <div className="sprite">
             {monster && (
-              <Sprite 
-                monster={monster} 
-                updateSprite={this.updateSprite} 
-              />
-            )}       
+              <Sprite monster={monster} updateSprite={this.updateSprite} />
+            )}
           </div>
 
-          <div className="stats">
-            {monster && <Stats monster={monster} />}
-          </div>
+          <div className="stats">{monster && <Stats monster={monster} />}</div>
 
           <div className="buttons">
             <div className="feed">
-              {monster && <Feed monster={monster} updateState={this.updateState} />}
+              {monster && (
+                <Feed monster={monster} updateState={this.updateState} />
+              )}
             </div>
-            
+
             <div className="poop">
-              {monster && <Poop monster={monster} updateState={this.updateState} />}
+              {monster && (
+                <Poop monster={monster} updateState={this.updateState} />
+              )}
             </div>
 
             <div className="sick">
-              {monster && <Sick monster={monster} updateState={this.updateState} />}
+              {monster && (
+                <Sick monster={monster} updateState={this.updateState} />
+              )}
             </div>
           </div>
-
         </div>
 
-          {monster && <Logic monster={monster} updateState={this.updateState} />}
+        {monster && <Logic monster={monster} updateState={this.updateState} />}
       </>
     );
   }

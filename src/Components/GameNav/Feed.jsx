@@ -31,7 +31,7 @@ const Feed = (props) => {
 
   return (
     <>
-      <div>
+      <div className="food">
         <button onClick={lessThanFiveHunger}>FOOD</button>
         <button onClick={lessThanFiveStrength}>VITAMIN</button>
       </div>

@@ -1,3 +1,47 @@
+## URL
+
+pojomon.netlify.app
+
+## Link to GitHub
+
+### Front-end
+
+https://github.com/RobThomas30/front-pojomon
+
+### Back-end
+
+https://github.com/RobThomas30/back-pojomon
+
+## Set up instructions
+
+1. Git clone both repos
+2. Bundle install (for the back end)
+3. Yarn install (for the front end)
+4. To access secret key base for Knock, you will need to run this command:
+
+`EDITOR="wait --code" rails credentials:edit`
+
+## Link to manual testing
+
+https://docs.google.com/spreadsheets/d/130bxjfTbsFrbtN0oPWAp7o2F-AkxtRDlxZeQ4HodIZ8/edit#gid=0
+
+## Libraries
+
+1. Puma
+2. Bcrypt
+3. Rack-cors
+4. Rspec-rails
+5. Factory_bot_rails
+6. Simplecov
+7. Knock
+8. Cypress
+
+## Code Coverage
+
+![](Docs/code-coverage.png)
+
+## Slide deck
+
 ## R1 Description of your website
 
 # Purpose

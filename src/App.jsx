@@ -69,7 +69,7 @@ class App extends React.Component {
 
             <Switch>
               <Route exact path="/">
-                {loggedIn ? <Redirect to="/game" /> : <Redirect to="/login" />}
+                {loggedIn ? <Redirect to="/login" /> : <Redirect to="/login" />}
               </Route>
 
               <Route

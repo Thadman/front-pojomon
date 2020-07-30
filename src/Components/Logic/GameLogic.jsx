@@ -18,9 +18,9 @@ class Logic extends React.Component {
 
   makeMonsterDie = () => {
     let deathCounter = 0
-    if(this.props.monster.hunger === 0) {deathCounter += 2}
-    if(this.props.monster.strength === 0) {deathCounter += 2}
-    if(this.props.monster.sick === true) {deathCounter += 2}
+    if(this.props.monster.hunger === 0) {deathCounter += 4}
+    if(this.props.monster.strength === 0) {deathCounter += 4}
+    if(this.props.monster.sick === true) {deathCounter += 4}
 
     if(deathCounter > this.props.monster.death) {
       this.props.monster.death = 0

@@ -6,7 +6,7 @@ class Death extends React.Component {
     return (
       <div className="form-container">
         <div className="death">
-          <p>Your monster..</p>
+          <p>Your monster DIED</p>
 
           <div className="sprite">
             <img src={death} alt=""/>

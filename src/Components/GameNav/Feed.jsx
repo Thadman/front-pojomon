@@ -26,7 +26,7 @@ const Feed = (props) => {
   };
 
   const makePoop = () => {
-    if (props.monster.counter % 3 === 0) {
+    if (props.monster.counter % 2 === 0) {
       if (props.monster.level !== "Egg" && props.monster.poop < 4) {
         props.monster.poop += 1;
         props.updateState(props.monster);

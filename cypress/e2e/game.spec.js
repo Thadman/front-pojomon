@@ -26,9 +26,6 @@ describe("be logged in and click on the attributes buttons", () => {
     });
   });
 
-  // .find("img")
-  // .should("have.length", 4);
-
   it("should click the POOP attribute and have the emoji move up", () => {
     cy.get(":nth-child(16) > button").click();
   });
@@ -42,5 +39,3 @@ describe("be logged in and click on the attributes buttons", () => {
     cy.get(":nth-child(15) > :nth-child(2)").click();
   });
 });
-
-// have the food, vitamin, poop here

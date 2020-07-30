@@ -35,9 +35,6 @@ describe("when the user clicks SignUp link", () => {
   });
   it("should be able to type into email and password inputs", () => {
     const { email, password } = userBuilder();
-    // cy.findByLabelText(/username/i)
-    //   .type(username)
-    // .should("contain.value", username); ***************** ASK ABOUT USING THE USERNAME
     cy.findByLabelText(/email/i).type(email).should("contain.value", email);
     cy.findByLabelText(/password/i)
       .type(password)

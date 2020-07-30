@@ -40,6 +40,7 @@ class SignUp extends React.Component {
         );
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
+        this.props.logInHandler();
         this.props.history.push("/game");
       }
     } catch (err) {

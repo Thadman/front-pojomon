@@ -14,9 +14,11 @@ const Sick = (props) => {
       return monsterName[walkName];
     };
 
-    props.monster.sick = false;
-    props.monster.image = `${walkAgain(props.monster.name)}Walk`;
-    props.updateState(props.monster);
+    if (props.monster.death !== 0) {
+      props.monster.sick = false;
+      props.monster.image = `${walkAgain(props.monster.name)}Walk`;
+      props.updateState(props.monster);
+    }
   };
 
   return (

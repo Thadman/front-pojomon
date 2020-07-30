@@ -15,6 +15,10 @@ class App extends React.Component {
     this.setState({ auth: false });
   };
 
+  logInHandler = () => {
+    this.setState({ auth: true });
+  };
+
   async componentDidMount() {
     try {
       const response = await fetch(
@@ -36,7 +40,6 @@ class App extends React.Component {
         });
       }
     } catch (err) {
-      console.log(err.message);
       this.setState({
         loading: false,
       });
@@ -58,20 +61,39 @@ class App extends React.Component {
                     {...props}
                     loggedIn={this.state.auth}
                     logoutCallback={this.logOutHandler}
+                    logInHandler={this.logInHandler}
                   />
                 );
               }}
             />
+
             <Switch>
               <Route exact path="/">
                 {loggedIn ? <Redirect to="/game" /> : <Redirect to="/login" />}
               </Route>
 
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/sign-up" component={SignUp} />
+              <Route
+                exact
+                path="/login"
+                render={(props) => (
+                  <Login {...props} logInHandler={this.logInHandler} />
+                )}
+              />
+
+              <Route
+                exact
+                path="/sign-up"
+                render={(props) => (
+                  <SignUp {...props} logInHandler={this.logInHandler} />
+                )}
+              />
+
               <Route exact path="/game" component={GameMonster} />
+
               <Route exact path="/death" component={Death} />
+
               <Route exact path="/help" component={Help} />
+
               <Route component={NoMatch} />
             </Switch>
           </div>

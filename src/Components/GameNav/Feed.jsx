@@ -4,20 +4,24 @@ import vitaminButton from "../../Assets/icons/vitaminbutton.gif";
 
 const Feed = (props) => {
   const lessThanFiveHunger = () => {
-    props.monster.counter += 1;
-    makePoop();
-    if (props.monster.hunger < 5 && props.monster.level !== "Egg") {
-      props.monster.hunger += 1;
-      props.updateState(props.monster);
+    if (props.monster.death !== 0) {
+      props.monster.counter += 1;
+      makePoop();
+      if (props.monster.hunger < 5 && props.monster.level !== "Egg") {
+        props.monster.hunger += 1;
+        props.updateState(props.monster);
+      }
     }
   };
 
   const lessThanFiveStrength = () => {
-    props.monster.counter += 1;
-    makePoop();
-    if (props.monster.strength < 5 && props.monster.level !== "Egg") {
-      props.monster.strength += 1;
-      props.updateState(props.monster);
+    if (props.monster.death !== 0) {
+      props.monster.counter += 1;
+      makePoop();
+      if (props.monster.strength < 5 && props.monster.level !== "Egg") {
+        props.monster.strength += 1;
+        props.updateState(props.monster);
+      }
     }
   };
 

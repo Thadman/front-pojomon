@@ -35,7 +35,8 @@ class Login extends React.Component {
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
-        this.props.history.push("/game"); // NEED CORRECT ROUTE ***************************************
+        this.props.logInHandler();
+        this.props.history.push("/game");
       }
     } catch (err) {
       this.setState({

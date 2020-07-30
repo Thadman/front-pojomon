@@ -5,7 +5,6 @@ import heart2 from "../../Assets/icons/heart2.gif";
 import heart3 from "../../Assets/icons/heart3.gif";
 import heart4 from "../../Assets/icons/heart4.gif";
 import heart5 from "../../Assets/icons/heart5.gif";
-import egg from "../../Assets/egg/egg.gif";
 
 const Stats = (props) => {
   const heartArray = [heart0, heart1, heart2, heart3, heart4, heart5];

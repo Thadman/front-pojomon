@@ -40,8 +40,6 @@ https://docs.google.com/spreadsheets/d/130bxjfTbsFrbtN0oPWAp7o2F-AkxtRDlxZeQ4Hod
 
 ![](Docs/code-coverage.png)
 
-## Slide deck
-
 ## R1 Description of your website
 
 # Purpose

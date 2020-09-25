@@ -26,6 +26,7 @@ class SignUp extends React.Component {
         }
       );
       if (response.status >= 400) {
+        alert("Username and Password between 3-32 characters");
         throw new Error("incorrect credentials");
       } else {
         const response = await fetch(
